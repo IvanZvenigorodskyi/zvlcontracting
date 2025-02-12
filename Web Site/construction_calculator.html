@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Construction Calculator - ZVL Contracting</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Main stylesheet (if shared across the site) -->
+  <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8">
+    <title>Construction Calculator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        padding: 0;
+        background: #f7f7f7;
+      }
+      header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      header img {
+        max-width: 800px; /* увеличенный размер логотипа */
+        height: auto;
+      }
+      h1, h2 {
+        color: #333;
+        text-align: center;
+      }
+      nav {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      nav button {
+        margin-right: 5px;
+        padding: 10px 15px;
+        background-color: #008CBA;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      nav button:hover {
+        background-color: #005f73;
+      }
+      .form-section {
+        display: none;
+        margin-top: 20px;
+        padding: 15px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      .form-section.active {
+        display: block;
+      }
+      label {
+        display: block;
+        margin-top: 10px;
+      }
+      input[type="number"] {
+        padding: 5px;
+        margin-top: 5px;
+        width: 100%;
+        max-width: 300px;
+        box-sizing: border-box;
+      }
+      button.calculate {
+        margin-top: 15px;
+        padding: 10px 15px;
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button.calculate:hover {
+        background-color: #45a049;
+      }
+      .result {
+        margin-top: 15px;
+        font-weight: bold;
+      }
+      footer {
+        text-align: center;
+        margin-top: 40px;
+        padding: 10px 0;
+        border-top: 1px solid #ddd;
+        font-size: 14px;
+        color: #777;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header with company logo -->
+    <header>
+      <img src="/images/Logo.png" alt="Company Logo">
+    </header>
+    
+    <h1>Construction Calculator</h1>
+    <nav>
+      <button onclick="showSection('walls')">Walls</button>
+      <button onclick="showSection('floors')">Floors</button>
+      <button onclick="showSection('roof')">Roof</button>
+      <button onclick="showSection('siding')">Siding</button>
+      <button onclick="showSection('decking')">Decking</button>
+      <button onclick="showSection('func6')">Function 6</button>
+      <button onclick="showSection('func7')">Function 7</button>
+      <button onclick="showSection('func8')">Function 8</button>
+    </nav>
+  
+    <!-- Walls Calculator -->
+    <div id="walls" class="form-section">
+      <h2>Walls Calculator</h2>
+      <label>Room length (feet):
+        <input type="number" id="walls_length" step="any">
+      </label>
+      <label>Room width (feet):
+        <input type="number" id="walls_width" step="any">
+      </label>
+      <label>Room height (feet):
+        <input type="number" id="walls_height" step="any">
+      </label>
+      <p>Select the type of wall work:</p>
+      <label>
+        <input type="radio" name="walls_option" value="1"> Drywall Reconfiguration Framing ($5/sq. ft)
+      </label>
+      <label>
+        <input type="radio" name="walls_option" value="2"> Drywall Installation ($2.5/sq. ft)
+      </label>
+      <label>
+        <input type="radio" name="walls_option" value="3"> Drywall Installation and Taping ($4/sq. ft)
+      </label>
+      <label>
+        <input type="radio" name="walls_option" value="4"> Wall Painting ($1/sq. ft)
+      </label>
+      <button class="calculate" onclick="calculateWalls()">Calculate</button>
+      <div id="walls_result" class="result"></div>
+    </div>
+  
+    <!-- Floors Calculator -->
+    <div id="floors" class="form-section">
+      <h2>Floors Calculator</h2>
+      <label>Room length (feet):
+        <input type="number" id="floors_length" step="any">
+      </label>
+      <label>Room width (feet):
+        <input type="number" id="floors_width" step="any">
+      </label>
+      <p>Select the type of flooring:</p>
+      <label>
+        <input type="radio" name="floors_option" value="1"> Tile Installation ($6/sq. ft)
+      </label>
+      <label>
+        <input type="radio" name="floors_option" value="2"> Vinyl or Laminate ($4/sq. ft)
+      </label>
+      <button class="calculate" onclick="calculateFloors()">Calculate</button>
+      <div id="floors_result" class="result"></div>
+    </div>
+  
+    <!-- Roof Calculator -->
+    <div id="roof" class="form-section">
+      <h2>Roof Calculator</h2>
+      <label>Roof length (feet):
+        <input type="number" id="roof_length" step="any">
+      </label>
+      <label>Roof width (feet):
+        <input type="number" id="roof_width" step="any">
+      </label>
+      <label>Roof height (feet) (distance from center to ridge):
+        <input type="number" id="roof_height" step="any">
+      </label>
+      <p>Select the type of roofing material:</p>
+      <label>
+        <input type="radio" name="roof_option" value="1"> Asphalt Shingles ($5/sq. ft)
+      </label>
+      <label>
+        <input type="radio" name="roof_option" value="2"> Metal Roof ($7/sq. ft)
+      </label>
+      <label>
+        <input type="radio" name="roof_option" value="3"> Ceramic Tiles ($9/sq. ft)
+      </label>
+      <button class="calculate" onclick="calculateRoof()">Calculate</button>
+      <div id="roof_result" class="result"></div>
+    </div>
+  
+    <!-- Siding Calculator -->
+    <div id="siding" class="form-section">
+      <h2>Siding Calculator</h2>
+      <label>Building length (feet):
+        <input type="number" id="siding_length" step="any">
+      </label>
+      <label>Building width (feet):
+        <input type="number" id="siding_width" step="any">
+      </label>
+      <label>Building height (feet):
+        <input type="number" id="siding_height" step="any">
+      </label>
+      <p>Select the type of siding:</p>
+      <label>
+        <input type="radio" name="siding_option" value="1"> Vinyl Siding ($5/sq. ft)
+      </label>
+      <label>
+        <input type="radio" name="siding_option" value="2"> Fiber Cement Siding ($7/sq. ft)
+      </label>
+      <label>
+        <input type="radio" name="siding_option" value="3"> Wood Siding ($6/sq. ft)
+      </label>
+      <button class="calculate" onclick="calculateSiding()">Calculate</button>
+      <div id="siding_result" class="result"></div>
+    </div>
+  
+    <!-- Decking Calculator -->
+    <div id="decking" class="form-section">
+      <h2>Decking Calculator</h2>
+      <label>Deck length (feet):
+        <input type="number" id="decking_length" step="any">
+      </label>
+      <label>Deck width (feet):
+        <input type="number" id="decking_width" step="any">
+      </label>
+      <label>Deck height (feet) (if not applicable, enter 0):
+        <input type="number" id="decking_height" step="any">
+      </label>
+      <p>Select the type of decking:</p>
+      <label>
+        <input type="radio" name="decking_option" value="1"> Composite Decking ($45/sq. ft)
+      </label>
+      <label>
+        <input type="radio" name="decking_option" value="2"> Wood Decking ($20/sq. ft)
+      </label>
+      <button class="calculate" onclick="calculateDecking()">Calculate</button>
+      <div id="decking_result" class="result"></div>
+    </div>
+  
+    <!-- Placeholders for Functions 6, 7, and 8 -->
+    <div id="func6" class="form-section">
+      <h2>Function 6</h2>
+      <p>Not implemented.</p>
+    </div>
+  
+    <div id="func7" class="form-section">
+      <h2>Function 7</h2>
+      <p>Not implemented.</p>
+    </div>
+  
+    <div id="func8" class="form-section">
+      <h2>Function 8</h2>
+      <p>Not implemented.</p>
+    </div>
+  
+    <script>
+      // Function to display the selected section
+      function showSection(sectionId) {
+        var sections = document.getElementsByClassName('form-section');
+        for (var i = 0; i < sections.length; i++) {
+          sections[i].classList.remove('active');
+        }
+        document.getElementById(sectionId).classList.add('active');
+      }
+  
+      // Walls Calculator
+      function calculateWalls() {
+        var length = parseFloat(document.getElementById('walls_length').value);
+        var width = parseFloat(document.getElementById('walls_width').value);
+        var height = parseFloat(document.getElementById('walls_height').value);
+        
+        if (isNaN(length) || isNaN(width) || isNaN(height)) {
+          alert("Please fill in all fields for walls.");
+          return;
+        }
+        
+        var perimeter = 2 * (length + width);
+        var area = perimeter * height;
+        
+        var options = document.getElementsByName('walls_option');
+        var price = 0;
+        var selected = false;
+        for (var i = 0; i < options.length; i++) {
+          if (options[i].checked) {
+            selected = true;
+            var opt = options[i].value;
+            if (opt === "1") {
+              price = 5;
+            } else if (opt === "2") {
+              price = 2.5;
+            } else if (opt === "3") {
+              price = 4;
+            } else if (opt === "4") {
+              price = 1;
+            }
+          }
+        }
+        if (!selected) {
+          alert("Please select an option for walls.");
+          return;
+        }
+        
+        var cost = area * price;
+        document.getElementById('walls_result').innerHTML =
+          "Wall area: " + area.toFixed(2) + " sq. ft<br>" +
+          "Cost: $" + cost.toFixed(2);
+      }
+  
+      // Floors Calculator
+      function calculateFloors() {
+        var length = parseFloat(document.getElementById('floors_length').value);
+        var width = parseFloat(document.getElementById('floors_width').value);
+        
+        if (isNaN(length) || isNaN(width)) {
+          alert("Please fill in all fields for floors.");
+          return;
+        }
+        
+        var area = length * width;
+        
+        var options = document.getElementsByName('floors_option');
+        var price = 0;
+        var selected = false;
+        for (var i = 0; i < options.length; i++) {
+          if (options[i].checked) {
+            selected = true;
+            var opt = options[i].value;
+            if (opt === "1") {
+              price = 6;
+            } else if (opt === "2") {
+              price = 4;
+            }
+          }
+        }
+        if (!selected) {
+          alert("Please select an option for floors.");
+          return;
+        }
+        
+        var cost = area * price;
+        document.getElementById('floors_result').innerHTML =
+          "Floor area: " + area.toFixed(2) + " sq. ft<br>" +
+          "Cost: $" + cost.toFixed(2);
+      }
+  
+      // Roof Calculator
+      function calculateRoof() {
+        var length = parseFloat(document.getElementById('roof_length').value);
+        var width = parseFloat(document.getElementById('roof_width').value);
+        var height = parseFloat(document.getElementById('roof_height').value);
+        
+        if (isNaN(length) || isNaN(width) || isNaN(height)) {
+          alert("Please fill in all fields for roof.");
+          return;
+        }
+        
+        var slope = Math.sqrt(Math.pow(width / 2, 2) + Math.pow(height, 2));
+        var area = 2 * (length * slope);
+        
+        var options = document.getElementsByName('roof_option');
+        var price = 0;
+        var selected = false;
+        for (var i = 0; i < options.length; i++) {
+          if (options[i].checked) {
+            selected = true;
+            var opt = options[i].value;
+            if (opt === "1") {
+              price = 5;
+            } else if (opt === "2") {
+              price = 7;
+            } else if (opt === "3") {
+              price = 9;
+            }
+          }
+        }
+        if (!selected) {
+          alert("Please select an option for roof.");
+          return;
+        }
+        
+        var cost = area * price;
+        document.getElementById('roof_result').innerHTML =
+          "Roof area: " + area.toFixed(2) + " sq. ft<br>" +
+          "Cost: $" + cost.toFixed(2);
+      }
+  
+      // Siding Calculator
+      function calculateSiding() {
+        var length = parseFloat(document.getElementById('siding_length').value);
+        var width = parseFloat(document.getElementById('siding_width').value);
+        var height = parseFloat(document.getElementById('siding_height').value);
+        
+        if (isNaN(length) || isNaN(width) || isNaN(height)) {
+          alert("Please fill in all fields for siding.");
+          return;
+        }
+        
+        var perimeter = 2 * (length + width);
+        var area = perimeter * height;
+        
+        var options = document.getElementsByName('siding_option');
+        var price = 0;
+        var selected = false;
+        for (var i = 0; i < options.length; i++) {
+          if (options[i].checked) {
+            selected = true;
+            var opt = options[i].value;
+            if (opt === "1") {
+              price = 5;
+            } else if (opt === "2") {
+              price = 7;
+            } else if (opt === "3") {
+              price = 6;
+            }
+          }
+        }
+        if (!selected) {
+          alert("Please select an option for siding.");
+          return;
+        }
+        
+        var cost = area * price;
+        document.getElementById('siding_result').innerHTML =
+          "Facade area: " + area.toFixed(2) + " sq. ft<br>" +
+          "Cost: $" + cost.toFixed(2);
+      }
+  
+      // Decking Calculator
+      function calculateDecking() {
+        var length = parseFloat(document.getElementById('decking_length').value);
+        var width = parseFloat(document.getElementById('decking_width').value);
+        var height = parseFloat(document.getElementById('decking_height').value);
+        
+        if (isNaN(length) || isNaN(width) || isNaN(height)) {
+          alert("Please fill in all fields for decking.");
+          return;
+        }
+        
+        var area = length * width;
+        
+        var options = document.getElementsByName('decking_option');
+        var price = 0;
+        var selected = false;
+        for (var i = 0; i < options.length; i++) {
+          if (options[i].checked) {
+            selected = true;
+            var opt = options[i].value;
+            if (opt === "1") {
+              price = 45;
+            } else if (opt === "2") {
+              price = 20;
+            }
+          }
+        }
+        if (!selected) {
+          alert("Please select an option for decking.");
+          return;
+        }
+        
+        var cost = area * price;
+        document.getElementById('decking_result').innerHTML =
+          "Deck area: " + area.toFixed(2) + " sq. ft<br>" +
+          "Cost: $" + cost.toFixed(2);
+      }
+    </script>
+    <!-- Footer with company information -->
+    <footer>
+      &copy; All rights reserved.
+    </footer>
+  </body>
+</html>

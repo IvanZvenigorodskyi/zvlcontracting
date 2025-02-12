@@ -1,0 +1,251 @@
+/* Сброс базовых стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Предотвращаем горизонтальный скроллинг */
+  html, body {
+    overflow-x: hidden;
+  }
+  
+  /* Основные стили для body */
+  body {
+    font-family: 'Roboto', sans-serif;
+    color: #482e2e;
+    background: #5b626d;
+    line-height: 1.6;
+  }
+  
+  /* Шапка (header) */
+  header {
+    background: linear-gradient(135deg, #929598, #d9e2ec);
+    padding: 20px;
+  }
+  .header-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    /* Гарантируем, что контейнер не выходит за пределы экрана */
+    width: 100%;
+    padding: 0 20px;
+  }
+  .logo {
+    /* Увеличенный логотип для десктопа, но для мобильных будет изменён через media query */
+    max-width: 200px;
+    height: auto;
+  }
+  .header-text {
+    flex: 1;
+    margin: 0 20px;
+  }
+  .header-text h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+  .header-text p {
+    font-size: 1em;
+  }
+  
+  /* Кнопка "Строительный калькулятор" */
+  .calculator-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  .calculator-btn:hover {
+    background: linear-gradient(135deg, #2575fc, #6a11cb);
+    transform: translateY(-2px);
+  }
+  
+  /* Навигационное меню */
+  nav {
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  nav ul li {
+    position: relative;
+  }
+  nav ul li a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+  nav ul li a:hover {
+    background: #f0f4f8;
+  }
+  
+  /* Dropdown меню для Services */
+  .dropdown .dropbtn {
+    cursor: pointer;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    min-width: 180px;
+    z-index: 1;
+  }
+  .dropdown-content a {
+    padding: 10px 15px;
+    display: block;
+    text-decoration: none;
+    color: #333;
+  }
+  .dropdown-content a:hover {
+    background: #f0f4f8;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Основной контент */
+  main {
+    padding: 40px 20px;
+  }
+  
+  /* Унифицированное оформление всех информационных блоков (разделов) */
+  main section {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 1200px;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  
+  /* Для разделов, требующих выравнивания по левому краю, добавляйте класс "info-left" */
+  .info-left {
+    text-align: left;
+  }
+  
+  /* Заголовки внутри информационных блоков */
+  main section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  /* Параграфы внутри информационных блоков */
+  main section p {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+  }
+  
+  /* Списки внутри информационных блоков */
+  main section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    display: inline-block;  /* Центрирование списка */
+    text-align: left;       /* Выравнивание пунктов по левому краю */
+  }
+  main section ul li {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+  }
+  
+  /* Стили кнопок */
+  .button {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  .button:hover {
+    background: linear-gradient(135deg, #2575fc, #6a11cb);
+    transform: translateY(-2px);
+  }
+  
+  /* Галерея проектов */
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .gallery a {
+    display: block;
+    overflow: hidden;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+  }
+  .gallery a:hover {
+    transform: scale(1.05);
+  }
+  .gallery-img {
+    display: block;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  /* Футер */
+  footer {
+    background: #e2e8f0;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9em;
+  }
+  
+  /* Медиа-запросы для адаптивности */
+  @media (max-width: 768px) {
+    /* Предотвращаем горизонтальный скролл */
+    html, body {
+      overflow-x: hidden;
+    }
+    
+    .header-container {
+      flex-direction: column;
+      text-align: center;
+      width: 100%;
+      padding: 0 10px;
+    }
+    .header-text {
+      margin: 15px 0;
+    }
+    /* Уменьшаем логотип для мобильных устройств */
+    .logo {
+      max-width: 150px;
+      width: 100%;
+    }
+    nav ul {
+      flex-direction: column;
+    }
+    nav ul li a {
+      padding: 10px;
+    }
+    .gallery-img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  
